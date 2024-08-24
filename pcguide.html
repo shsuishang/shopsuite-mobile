@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang=zh-CN>
+	<head>
+		<meta charset=utf-8>
+		<meta http-equiv=X-UA-Compatible content="IE=edge">
+		<meta name=viewport content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1">
+		<title>pcguide</title>
+		<script type="text/javascript">
+			function redirectToLaunch() {
+				var UA = navigator.userAgent.toLowerCase();
+				var isAndroid = UA.indexOf('android') > 0;
+				var isIOS = /iphone|ipad|ipod|ios/.test(UA);
+				if (isAndroid || isIOS) {
+					location.href = '/h5/';
+				}
+			};
+			redirectToLaunch();
+
+			var timer = null;
+			window.addEventListener('resize', function() {
+				timer && clearTimeout(timer);
+				timer = setTimeout(function() {
+					redirectToLaunch();
+				}, 500);
+			});
+		</script>
+		<style type="text/css">
+			.wrapper {
+				width: 500px;
+				height: 500px;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				margin-top: -200px;
+				margin-left: -200px;
+				text-align: center;
+			}
+
+			#qrcode{
+				display: inline-block;
+				vertical-align: middle;
+				width: 200px;
+				height: 200px;
+			}
+            
+			#qrcode img {
+				display: inline-block;
+				vertical-align: middle;
+				width: 200px;
+				height: 200px;
+			}
+
+			.list {
+				width: 500px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="wrapper">
+            <div id="qrcode"></div>
+			<div class="list">
+				<p class="list-cell">请使用手机浏览器，扫描上方二维码预览。</p>
+				<p class="list-cell">PC浏览器，请打开控制台并切换至手机模式后并再次刷新浏览。</p>
+			</div>
+		</div>
+        
+        <script type="text/javascript" src="https://static.shopsuite.cn/js/qrcode.min.js"></script>
+        <script type="text/javascript">
+            var qrcode = new QRCode(document.getElementById("qrcode"), {
+                width : 200,
+                height : 200
+            });
+        
+            qrcode.makeCode('http://h5.suteshop.com');
+        </script>
+	</body>
+</html>

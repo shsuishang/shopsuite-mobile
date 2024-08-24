@@ -1,0 +1,81 @@
+{
+  "id": "liu-customize-sel",
+  "displayName": "省市区地址选择、三级联动地址选择、多级联动地址选择、地址选择器、多级选择器",
+  "version": "1.0.4",
+  "description": "地址选择器，常用于省市县，小区选择，自带动画效果，脱离uni-popup，可在任何地方直接应用，自带省市区",
+  "keywords": [
+    "liu-customize-sel"
+],
+  "repository": "",
+  "engines": {
+    "HBuilderX": "^3.1.0"
+  },
+  "dcloudext": {
+    "type": "component-vue",
+    "sale": {
+      "regular": {
+        "price": "0.00"
+      },
+      "sourcecode": {
+        "price": "0.00"
+      }
+    },
+    "contact": {
+      "qq": ""
+    },
+    "declaration": {
+      "ads": "无",
+      "data": "无",
+      "permissions": "无"
+    },
+    "npmurl": ""
+  },
+  "uni_modules": {
+    "dependencies": [],
+    "encrypt": [],
+    "platforms": {
+      "cloud": {
+        "tcb": "y",
+        "aliyun": "y"
+      },
+      "client": {
+        "Vue": {
+          "vue2": "y",
+          "vue3": "u"
+        },
+        "App": {
+          "app-vue": "u",
+          "app-nvue": "u"
+        },
+        "H5-mobile": {
+          "Safari": "y",
+          "Android Browser": "y",
+          "微信浏览器(Android)": "y",
+          "QQ浏览器(Android)": "y"
+        },
+        "H5-pc": {
+          "Chrome": "u",
+          "IE": "u",
+          "Edge": "u",
+          "Firefox": "u",
+          "Safari": "u"
+        },
+        "小程序": {
+          "微信": "y",
+          "阿里": "u",
+          "百度": "u",
+          "字节跳动": "u",
+          "QQ": "u",
+          "钉钉": "u",
+          "快手": "u",
+          "飞书": "u",
+          "京东": "u"
+        },
+        "快应用": {
+          "华为": "u",
+          "联盟": "u"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,326 @@
+{
+    "name" : "modulithshop",
+    "appid" : "__UNI__61A5FA0",
+    "description" : "随商信息技术（上海）有限公司 - 专业的新零售智慧电商生态系统及服务提供商。",
+    "versionName" : "3.0.3",
+    "versionCode" : 303,
+    "transformPx" : false,
+    "app-plus" : {
+        /* 5+App特有相关 */
+        "usingComponents" : true,
+        "modules" : {
+            "Payment" : {},
+            "VideoPlayer" : {},
+            "Push" : {},
+            "OAuth" : {},
+            "Geolocation" : {},
+            "Speech" : {},
+            "Share" : {},
+            "LivePusher" : {},
+            "Camera" : {}
+        },
+        "safearea" : {
+            "background" : "#FFFFFF",
+            "bottom" : {
+                "offset" : "auto"
+            }
+        },
+        /* 模块配置 */
+        "distribute" : {
+            /* 应用发布信息 */
+            "android" : {
+                /* android打包配置 */
+                "permissions" : [
+                    "<uses-feature android:name=\"android.hardware.camera\"/>",
+                    "<uses-feature android:name=\"android.hardware.camera.autofocus\"/>",
+                    "<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\"/>",
+                    "<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\"/>",
+                    "<uses-permission android:name=\"android.permission.ACCESS_LOCATION_EXTRA_COMMANDS\"/>",
+                    "<uses-permission android:name=\"android.permission.ACCESS_MOCK_LOCATION\"/>",
+                    "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"/>",
+                    "<uses-permission android:name=\"android.permission.ACCESS_SURFACE_FLINGER\"/>",
+                    "<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\"/>",
+                    "<uses-permission android:name=\"android.permission.ADD_VOICEMAIL\"/>",
+                    "<uses-permission android:name=\"android.permission.AUTHENTICATE_ACCOUNTS\"/>",
+                    "<uses-permission android:name=\"android.permission.CALL_PHONE\"/>",
+                    "<uses-permission android:name=\"android.permission.CAMERA\"/>",
+                    "<uses-permission android:name=\"android.permission.CHANGE_NETWORK_STATE\"/>",
+                    "<uses-permission android:name=\"android.permission.CHANGE_WIFI_STATE\"/>",
+                    "<uses-permission android:name=\"android.permission.FLASHLIGHT\"/>",
+                    "<uses-permission android:name=\"android.permission.GET_ACCOUNTS\"/>",
+                    "<uses-permission android:name=\"android.permission.INTERNET\"/>",
+                    "<uses-permission android:name=\"android.permission.LOCATION_HARDWARE\"/>",
+                    "<uses-permission android:name=\"android.permission.MODIFY_AUDIO_SETTINGS\"/>",
+                    "<uses-permission android:name=\"android.permission.MOUNT_UNMOUNT_FILESYSTEMS\"/>",
+                    "<uses-permission android:name=\"android.permission.READ_CONTACTS\"/>",
+                    "<uses-permission android:name=\"android.permission.READ_EXTERNAL_STORAGE\"/>",
+                    "<uses-permission android:name=\"android.permission.READ_LOGS\"/>",
+                    "<uses-permission android:name=\"android.permission.READ_PHONE_STATE\"/>",
+                    "<uses-permission android:name=\"android.permission.RECORD_AUDIO\"/>",
+                    "<uses-permission android:name=\"android.permission.VIBRATE\"/>",
+                    "<uses-permission android:name=\"android.permission.WAKE_LOCK\"/>",
+                    "<uses-permission android:name=\"android.permission.WRITE_CONTACTS\"/>",
+                    "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\"/>",
+                    "<uses-permission android:name=\"android.permission.WRITE_SETTINGS\"/>"
+                ],
+                "minSdkVersion" : 19,
+                "targetSdkVersion" : 33,
+                "abiFilters" : [ "armeabi-v7a", "arm64-v8a", "x86" ],
+                "permissionExternalStorage" : {
+                    "request" : "none",
+                    "prompt" : "应用保存运行状态等信息，需要获取读写手机存储（系统提示为访问设备上的照片、媒体内容和文件）权限，请允许。"
+                }
+            },
+            "ios" : {
+                "urltypes" : [
+                    {
+                        "urlidentifier" : "com.googleusercontent.apps.746568146308-ekgvbplal0lspr54i52c8digltokuv3c",
+                        "urlschemes" : [
+                            "com.googleusercontent.apps.746568146308-ekgvbplal0lspr54i52c8digltokuv3c"
+                        ]
+                    }
+                ],
+                "privacyDescription" : {
+                    "NSPhotoLibraryUsageDescription" : "此App会在上传头像图片服务中访问您的相机权限",
+                    "NSPhotoLibraryAddUsageDescription" : "此App会在上传头像图片服务中访问您的相机权限",
+                    "NSCameraUsageDescription" : "此App会在上传头像图片服务中访问您的相机权限",
+                    "NSLocationAlwaysAndWhenInUseUsageDescription" : "此App会在使用导航服务中使用您的定位权限",
+                    "NSMicrophoneUsageDescription" : "此APP会在使用声音识别服务中使用您的麦克风权限",
+                    "NSLocationAlwaysUsageDescription" : "此App会在使用导航服务中使用您的定位权限",
+                    "NSLocationWhenInUseUsageDescription" : "此App会在使用导航服务中使用您的定位权限"
+                },
+                "dSYMs" : false
+            },
+            /* ios打包配置 */
+            "sdkConfigs" : {
+                "oauth" : {
+                    "weixin" : {
+                        "appid" : "wx39a789a2c2e9d1ac",
+                        "appsecret" : "138ba10e8c87cf61ab0cea2923b29d80",
+                        "UniversalLinks" : "https://test.suteshop.com/"
+                    },
+                    "apple" : {}
+                },
+                "payment" : {
+                    "weixin" : {
+                        "__platform__" : [ "ios", "android" ],
+                        "appid" : "wx39a789a2c2e9d1ac",
+                        "UniversalLinks" : "https://test.suteshop.com/"
+                    },
+                    "alipay" : {
+                        "__platform__" : [ "ios", "android" ]
+                    }
+                },
+                "share" : {
+                    "weixin" : {
+                        "appid" : "wx39a789a2c2e9d1ac",
+                        "UniversalLinks" : "https://test.suteshop.com/"
+                    }
+                },
+                "maps" : {
+                    "amap" : {
+                        "appkey_ios" : "cb769b48ba015c503a5cb339e8d8d57b",
+                        "appkey_android" : "86504cb3d3049470ac984ed459eb706b"
+                    }
+                },
+                "push" : {},
+                "ad" : {},
+                "geolocation" : {
+                    "system" : {
+                        "__platform__" : [ "ios", "android" ]
+                    }
+                },
+                "speech" : {
+                    "ifly" : {}
+                }
+            },
+            "icons" : {
+                "ios" : {
+                    "appstore" : "unpackage/res/icons/1024x1024.png",
+                    "ipad" : {
+                        "app" : "unpackage/res/icons/76x76.png",
+                        "app@2x" : "unpackage/res/icons/152x152.png",
+                        "notification" : "unpackage/res/icons/20x20.png",
+                        "notification@2x" : "unpackage/res/icons/40x40.png",
+                        "proapp@2x" : "unpackage/res/icons/167x167.png",
+                        "settings" : "unpackage/res/icons/29x29.png",
+                        "settings@2x" : "unpackage/res/icons/58x58.png",
+                        "spotlight" : "unpackage/res/icons/40x40.png",
+                        "spotlight@2x" : "unpackage/res/icons/80x80.png"
+                    },
+                    "iphone" : {
+                        "app@2x" : "unpackage/res/icons/120x120.png",
+                        "app@3x" : "unpackage/res/icons/180x180.png",
+                        "notification@2x" : "unpackage/res/icons/40x40.png",
+                        "notification@3x" : "unpackage/res/icons/60x60.png",
+                        "settings@2x" : "unpackage/res/icons/58x58.png",
+                        "settings@3x" : "unpackage/res/icons/87x87.png",
+                        "spotlight@2x" : "unpackage/res/icons/80x80.png",
+                        "spotlight@3x" : "unpackage/res/icons/120x120.png"
+                    }
+                },
+                "android" : {
+                    "hdpi" : "unpackage/res/icons/72x72.png",
+                    "ldpi" : "unpackage/res/icons/48x48.png",
+                    "mdpi" : "unpackage/res/icons/48x48.png",
+                    "xhdpi" : "unpackage/res/icons/96x96.png",
+                    "xxhdpi" : "unpackage/res/icons/144x144.png",
+                    "xxxhdpi" : "unpackage/res/icons/192x192.png"
+                }
+            },
+            "splashscreen" : {
+                "ios" : {
+                    "iphone" : {
+                        "retina35" : "unpackage/splashscreen/640X960.png",
+                        "retina40" : "unpackage/splashscreen/640X1136.png",
+                        "retina47" : "unpackage/splashscreen/750X1334.png",
+                        "retina55" : "unpackage/splashscreen/1242X2208.png",
+                        "iphonex" : "unpackage/splashscreen/1242X2688.png",
+                        "portrait-896h@2x" : "unpackage/splashscreen/828X1792.png",
+                        "protrait-896h@3x" : "unpackage/splashscreen/1242X2688.png"
+                    }
+                },
+                "iosStyle" : "common",
+                "useOriginalMsgbox" : true
+            }
+        },
+        "splashscreen" : {
+            "waiting" : true,
+            "alwaysShowBeforeRender" : false
+        },
+        "nvueCompiler" : "uni-app",
+        "locales" : {
+            "en" : {
+                // 英文  
+                "name" : "SuiSungShop", // 应用名称  
+                "android" : {
+                    "strings" : {
+                        //Android平台自定义字符串  
+                        "CustomKey" : "CustomValue"
+                    }
+                },
+                //...  
+                "ios" : {
+                    "privacyDescription" : {
+                        //iOS平台隐私访问描述信息  
+                        "NSPhotoLibraryUsageDescription" : "此App会在上传头像图片服务中访问您的相机权限",
+                        "NSPhotoLibraryAddUsageDescription" : "此App会在上传头像图片服务中访问您的相机权限",
+                        "NSCameraUsageDescription" : "此App会在上传头像图片服务中访问您的相机权限",
+                        "NSLocationAlwaysAndWhenInUseUsageDescription" : "此App会在使用导航服务中使用您的定位权限",
+                        "NSMicrophoneUsageDescription" : "此APP会在使用声音识别服务中使用您的麦克风权限",
+                        "NSLocationAlwaysUsageDescription" : "此App会在使用导航服务中使用您的定位权限",
+                        "NSLocationWhenInUseUsageDescription" : "此App会在使用导航服务中使用您的定位权限"
+                    },
+                    "infoPlist" : {
+                        //iOS平台自定义InfoPlist.strings  
+                        "CustomKey" : "CustomValue"
+                    }
+                }
+            },
+            //...  
+            "zh" : {},
+            // 中文（简体）  
+            "zh-TW" : {},
+            // 繁体中文（台湾）  
+            "zh-HK" : {}
+        },
+        "nativePlugins" : {},
+        "uniStatistics" : {
+            "enable" : true
+        },
+        "compilerVersion" : 2
+    },
+    // 繁体中文（香港）  
+    /* SDK配置 */
+    "quickapp" : {},
+    /* 快应用特有相关 */
+    "mp-weixin" : {
+        /* 小程序特有相关 */
+        "usingComponents" : true,
+        "appid" : "wx9d19d00b58d7878e",
+        "setting" : {
+            "urlCheck" : false,
+            "minified" : true,
+            "es6" : true,
+            "postcss" : true
+        },
+        "permission" : {
+            "scope.userLocation" : {
+                "desc" : "根据用户位置，列出附近的门店，可导航进入实体门店"
+            }
+        },
+        "uniStatistics" : {
+            "enable" : false
+        },
+        "plugins" : {
+        },
+        "optimization" : {
+            "subPackages" : true
+        },
+        "lazyCodeLoading" : "requiredComponents"
+    },
+    "h5" : {
+        "template" : "index.html",
+        "router" : {
+            "mode" : "history",
+            "base" : "/h5/"
+        },
+        "domain" : "https://test.suteshop.com",
+        "title" : "商城系统",
+        "uniStatistics" : {
+            "enable" : false
+        },
+        "optimization" : {
+            "treeShaking" : {
+                "enable" : false
+            }
+        }
+    },
+    "mp-baidu" : {
+        "appid" : "15306246",
+        "setting" : {
+            "urlCheck" : true
+        },
+        "uniStatistics" : {
+            "enable" : false
+        }
+    },
+    "mp-toutiao" : {
+        "appid" : "tt6fd91964f0f39bbf",
+        "setting" : {
+            "minified" : true,
+            "urlCheck" : false,
+            "es6" : true,
+            "postcss" : true
+        },
+        "uniStatistics" : {
+            "enable" : false
+        }
+    },
+    "mp-alipay" : {
+        "uniStatistics" : {
+            "enable" : false
+        }
+    },
+    "mp-qq" : {
+        "uniStatistics" : {
+            "enable" : false
+        },
+        "setting" : {
+            "es6" : true,
+            "postcss" : true,
+            "minified" : true
+        }
+    },
+    "uniStatistics" : {
+        "enable" : false
+    },
+    "quickapp-webview" : {
+        "icon" : "static/icon.png",
+        "package" : "com.suisung.bbc.demo",
+        "minPlatformVersion" : 1073,
+        "versionName" : "1.0",
+        "versionCode" : 1
+    },
+    "locale" : "auto"
+}
