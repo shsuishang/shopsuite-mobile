@@ -314,7 +314,7 @@
               </view>
             </view>
             <view :class="'m-RichText ' + (tapindex==1?'':'hide')" v-if="ProductInfo.product_detail">
-              <wxParse :content="ProductInfo.product_detail" :imageProp="{lazyLoad:true, mode:'widthFix'}"/>
+              <wxParse :content="ProductInfo.product_detail"  @navigate="navigate"  :imageProp="{lazyLoad:true, mode:'widthFix'}"/>
             </view>
             <view :class="'m-RichText ' + (tapindex==2?'':'hide')" v-if="ProductInfo.product_extension">
               <wxParse :content="ProductInfo.product_extension" :imageProp="{lazyLoad:true, mode:'widthFix'}"/>
@@ -691,7 +691,7 @@
         <loading></loading>
       </view>
     </view>
-
+	
     <!-- 弹出层 -->
    
     <view :class="'m-panel-sp ' + (shareBoxFlag==0?'hide':'') " @click.stop="closeNativeShare">
@@ -1476,7 +1476,7 @@ export default {
             data.product_service && (data.product_service = data.product_service.replace(new RegExp(
                 '<img ', "gm"), '<img style="max-width:100%;height:auto;display: flex;" '));
 
-
+			data.product_detail = data.product_detail + "<div style='text-align:center;padding:10px 0 2px'><a href='https://www.shopsuite.cn'>Powered by shopsuite.cn</a></div>"
             //let chat_url = that.$.sprintf("/im/chat/chat?uid=%s&item_id=%s", data.store_info.user_id, data.item_id);
             let chat_url = that.$.sprintf("/im/chat/chat?uid=%s&item_id=%s", 0, data.item_id);
             that.setData({
@@ -2361,6 +2361,9 @@ export default {
       uni.setStorageSync('district_id', params.district_id);
       that.initProduct(true);
     },
+    navigate(href, e) {
+      this.$.gopage("/pagesub/webpage/webpage?u=" + encodeURIComponent(href));
+    }
   }
 }
 </script>

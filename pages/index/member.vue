@@ -374,13 +374,7 @@
 
       <guess-you-like v-if="loadFlag" ref="guessYouLike" :titleText="__('——猜你喜欢——')" :maxNumber="1" :isShowLoading="false"></guess-you-like>
 
-      <view class="m-tips" style="margin:30rpx 0;padding-bottom: 100rpx;" v-if="(!IsChannel)">
-        <view class="m-tips-logo">
-          <image lazy-load mode="aspectFit" src="/static/images/logo_tech.png"></image>
-        </view>
-        <view class="m-tips-str">{{ __('商城套件系统提供技术支持') }} {{ versionNumber }}</view>
-      </view>
-      <view class="m-tips" style="margin:30rpx 0;padding-bottom: 100rpx;" v-else>
+      <view class="m-tips" style="margin:30rpx 0;padding-bottom: 100rpx;">
         <view class="m-tips-str">{{ versionName }}{{ versionNumber }}</view>
 
         <view class="m-tips-str">
@@ -388,6 +382,9 @@
         </view>
         <view class="m-tips-str">
           <u-parse :content="copyright + ' '" @navigate="navigate" :imageProp="{lazyLoad:true}"></u-parse>
+        </view>
+        <view class="m-tips-str">
+          <u-parse content="<a href='https://www.shopsuite.cn'>Powered by 随商信息技术(上海)有限公司 www.shopsuite.cn</a>" @navigate="navigate" :imageProp="{lazyLoad:true}"></u-parse>
         </view>
       </view>
     </view>
