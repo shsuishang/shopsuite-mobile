@@ -1,0 +1,89 @@
+view,
+scroll-view,
+swiper,
+swiper-item,
+cover-view,
+cover-image,
+icon,
+text,
+rich-text,
+progress,
+button,
+checkbox,
+form,
+input,
+label,
+radio,
+slider,
+switch,
+textarea,
+navigator,
+audio,
+camera,
+image,
+video,
+picker-view,
+picker-view-column {
+	box-sizing: border-box;
+}
+
+.container {
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+
+.scrollView {
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+
+.scroll-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 30rpx;
+}
+
+.scroll-container.freeze {
+	height: 100%;
+	overflow: hidden;
+}
+
+.scroll-item {
+	width: 100%;
+	padding: 28rpx;
+	background-color: white;
+	border-radius: 8px;
+	display: flex;
+	flex-direction: row;
+	margin-bottom: 35rpx;
+}
+
+.scroll-item-image {
+	background-color: #F8F8F8;
+	border-radius: 8px;
+	height: 220rpx;
+	width: 40%;
+}
+
+.scroll-item-text {
+	width: 55%;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	font-size: 16px;
+	color: #666;
+}
+
+.statusText {
+	height: 40px;
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	font-size: 30rpx;
+}

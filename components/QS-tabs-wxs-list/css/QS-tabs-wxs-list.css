@@ -1,0 +1,142 @@
+view,
+scroll-view,
+swiper,
+swiper-item,
+cover-view,
+cover-image,
+icon,
+text,
+rich-text,
+progress,
+button,
+checkbox,
+form,
+input,
+label,
+radio,
+slider,
+switch,
+textarea,
+navigator,
+audio,
+camera,
+image,
+video,
+picker-view,
+picker-view-column {
+	box-sizing: border-box;
+}
+
+.container {
+	position: relative;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+}
+
+.disabled {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+}
+
+.tabs-container {
+	top: 0;
+	left: 0;
+	width: 100%;
+	transition-property: background-color;
+	transition-duration: .3s;
+}
+
+.tabs-scroll {
+	width: 100%;
+	white-space: nowrap;
+	position: relative;
+}
+
+.tabs-scroll-box {
+	position: relative;
+	display: flex;
+	white-space: nowrap !important;
+	display: block !important;
+}
+
+.tabs-scroll-item {
+	position: relative;
+	display: inline-block;
+	text-align: center;
+	transition: color, font-size .3s;
+}
+
+.hide_text {
+	opacity: 0;
+	pointer-events: none;
+}
+
+.abs_text {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	transition-property: color;
+	transition-duration: .3s;
+}
+
+.swiper-container {
+	width: 100%;
+	transition-property: background-color;
+	transition-duration: .3s;
+}
+
+.swiper-item {
+	transition: background-color .3s;
+}
+
+.line {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 0;
+	height: 0;
+	transition-property: width, height, background-color, border;
+	transition-duration: .3s;
+}
+
+/* refresh */
+.refresh-container {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	position: relative;
+}
+
+.refresh-image-container {
+	position: absolute;
+	left: 0;
+	top: 0;
+	transform: translateY(-100%);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: .3s;
+}
+.refresh-image-container.show{
+	opacity: 1;
+}
+
+
+.refresh-image {
+	height: 80rpx;
+	width: 80rpx;
+}
+
+.refreshText {
+	margin-top: 15rpx;
+}

@@ -1,6 +1,6 @@
 {
     "name" : "modulithshop",
-    "appid" : "__UNI__61A5FA0",
+    "appid" : "__UNI__40BCEA1",
     "description" : "随商信息技术（上海）有限公司 - 专业的新零售智慧电商生态系统及服务提供商。",
     "versionName" : "3.0.3",
     "versionCode" : 303,
@@ -252,8 +252,7 @@
         "uniStatistics" : {
             "enable" : false
         },
-        "plugins" : {
-        },
+        "plugins" : {},
         "optimization" : {
             "subPackages" : true
         },

@@ -1,0 +1,12 @@
+.refresh-image.isRefreshing{
+	animation: isRefreshing 5s ease-in infinite both alternate;
+}
+
+@keyframes isRefreshing {
+	0% {
+		transform: rotate(0);
+	}
+	100% {
+		transform: rotate(3600deg);
+	}
+}

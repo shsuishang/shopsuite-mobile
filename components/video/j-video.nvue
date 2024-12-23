@@ -1,0 +1,87 @@
+<template>
+	<view class="root">
+		<video
+			ref="myVideos"
+			id="myVideo"
+			:src="this.src"
+			@play="playIng"
+			:enable-progress-gesture="false"
+			:page-gesture="false"
+			:loop="true"
+			:initial-time="15"
+			:controls="false"
+			:show-fullscreen-btn="false"
+			:show-center-play-btn="false"
+			:style="boxStyle"
+			:poster="this.img"
+			
+			
+			objectFit="fill"
+		></video>
+		
+		<!-- <image
+			class="videoImg"
+			:src="this.src+'?x-oss-process=video/snapshot,t_1,m_fast'" resize="contain"
+			:style="boxStyle"
+		></image> -->
+	</view>
+</template>
+
+<script>
+	export default {
+		watch: {
+			state(newValue, oldValue) {
+				console.log('nnn-play')
+				setTimeout(()=>{
+					var createVideoContext = uni.createVideoContext('myVideo',this);
+					switch (newValue){
+						case 'play':
+							createVideoContext.seek(0);
+							createVideoContext.play();
+							break;
+						case 'continue':
+							createVideoContext.play();
+							break;
+						case 'pause':
+							createVideoContext.pause();
+							break;
+						case 'stop':
+							//this.showMe = false;
+							//this.unshowMe = true;
+							createVideoContext.seek(0);
+							createVideoContext.pause();
+							break;
+						default:
+							break;
+					}
+				},300)
+			}
+		},
+		props: {
+			state: {
+				default: false
+			},
+			src:{
+				default: false
+			},
+			img:{
+				default: false
+			},
+			boxStyle:{
+				default :{}
+			}
+		},
+	}
+</script>
+
+<style>
+.root{
+	background-color: #000000;
+	position: relative;
+}
+.videoImg{
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+</style>

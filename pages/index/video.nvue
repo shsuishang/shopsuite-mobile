@@ -1,0 +1,366 @@
+<template>
+	<view class="page" :style="{ height: height }">
+		<view class="swiper" :style="containerStyle">
+			<block v-for="(item, index) in videoList" :key="index">
+				<video-new
+					class="video"
+					:video_id="item.video_id"
+					:nickname="item.nickname"
+					:video_describe="item.video_describe"
+					:cover_url="item.cover_url"
+					:video_url="item.video_url"
+					:dianzan="item.dianzan"
+					:is_dianzan="item.is_dianzan"
+					:pinglun="item.pinglun"
+					:zhuanfa="item.zhuanfa"
+					:height="height"
+					:width="width"
+					:sysheight="sysheight"
+					:play="item.flag"
+					:index="index"
+					:cur_index="cur_index"
+					:style="{ height: height, width: width }"
+					
+					@clickVideo="clickVideo"
+					@ListTouchMove="ListTouchMove"
+					@ListTouchEnd="ListTouchEnd"
+					@ListTouchStart="ListTouchStart"
+					
+				></video-new>
+			</block>
+		</view>
+		<cover-view v-if="false"
+			class="cover-view-marks"
+			:style="{ height: height, width: width }"
+			@click.stop="clickVideo"
+			@touchmove="ListTouchMove"
+			@touchend.stop="ListTouchEnd"
+			@touchstart="ListTouchStart">
+		</cover-view>
+		<cover-view class="wrapper" :style="{ width: width }">
+			<cover-view class="title-center" :style="{ width: width }">
+				<text class="title" :class="video_type == 'recommend' ? 'active-title' : ''" @click="switchTtype('recommend')">推荐</text>
+				<text class="title" :class="video_type == 'follow' ? 'active-title' : ''" @click="switchTtype('follow')">关注</text>
+			</cover-view>
+		</cover-view>
+	</view>
+</template>
+
+
+<script>
+import videoNew from '@/components/video/video-new.vue';
+export default {
+	components: {
+		videoNew
+	},
+	data() {
+		return {
+			video_type: 'recommend',
+			translateX: '10',
+			height: '667px',
+			cur_index: null,
+			width: '',
+			sysheight: 0,
+			containerStyle: 'transform:translateY(0px)',
+			distance: 0,
+			listTouchStartY: 0,
+			listTouchDirection: null,
+			scroll: false,
+			videoList: [],
+			clicktime:0,
+			
+			videoCtx:null
+		};
+	},
+	onLoad() {
+		let res = uni.getSystemInfoSync();
+		this.height = `${res.windowHeight}px`;
+		this.width = `${res.windowWidth}px`;
+		this.sysheight = res.windowHeight;
+		console.log(res);
+		this.getVideoList();
+	},
+	onHide() {
+		console.log('界面隐藏,暂停播放',`video_${this.videoList[this.cur_index].video_id}`);
+		this.videoCtx = uni.createVideoContext(`video_${this.videoList[this.cur_index].video_id}`, this);
+		this.videoCtx.pause();
+	},
+	onShow() {
+		console.log('界面显示')
+		if (this.cur_index !== null && this.videoList[this.cur_index].flag) {
+			console.log('开启播放',`video_${this.videoList[this.cur_index].video_id}`);
+			this.videoCtx = uni.createVideoContext(`video_${this.videoList[this.cur_index].video_id}`, this);
+			this.videoCtx.play();
+		}
+	},
+	onReady() {},
+	methods: {
+		switchTtype(type) {
+			uni.showToast({icon: "success", title: "仅供演示", duration: 2e3})
+			return;
+			
+			console.log(type);
+			this.video_type = type;
+			this.getVideoList(true);
+		},
+		getVideoList(refresh) {
+			uni.request({
+				url: 'https://api.52170.xin/video',
+				dataType: 'json',
+				success: res => {
+					console.log(res);
+					
+					if (refresh)
+					{
+						this.video_type = 'recommend';
+						this.translateX = '10';
+						this.cur_index = null;
+						this.containerStyle = `transform:translateY(0px)`;
+						this.distance = 0;
+						this.listTouchStartY = 0;
+						this.listTouchDirection = null;
+						this.scroll = false;
+						//this.videoList = [];
+						this.$set(this, 'videoList', [])
+						this.clicktime = 0;
+					}
+					
+					console.info('sssssssssssssssssssssssssssssssss');
+					
+					let tmp_list = [];
+					for (let item of res.data.data.list) {
+						tmp_list.push({
+								video_id: item.video_id,
+								nickname: item.nickname,
+								video_describe: item.video_describe,
+								cover_url: item.cover_url,
+								video_url: item.video_url,
+								dianzan: item.dianzan,
+								pinglun: item.pinglun,
+								zhuanfa: item.zhuanfa,
+								is_dianzan: item.is_dianzan,
+								flag: false
+							});
+					}
+					
+					this.$set(this, 'videoList', tmp_list)
+					
+					try {
+						setTimeout(() => {
+							if (this.cur_index == null)
+							{
+								this.cur_index = 0;
+							}
+							
+							this.videoList[this.cur_index].flag = true;
+						 
+							this.videoCtx = uni.createVideoContext(`video_${this.videoList[this.cur_index].video_id}`, this);
+							this.videoCtx.play();
+							console.log('time play');
+							console.info(`video_${this.videoList[this.cur_index].video_id}`)
+						}, 100);
+					} catch (e) {
+						console.log(e);
+					}
+				}
+			});
+		},
+		clickVideo(e) {
+			console.info('clickVideo');
+			if(this.clicktime > 0 && e.timeStamp - this.clicktime < 200){
+				clearInterval(this.han);
+				if(!this.videoList[this.cur_index].is_dianzan){
+					this.videoList[this.cur_index].is_dianzan = true;
+				}
+			}else{
+				let _this = this;
+				this.han = setTimeout(function() {
+					_this.videoList[_this.cur_index].flag = !_this.videoList[_this.cur_index].flag;
+				}, 200);
+			}
+			this.clicktime = e.timeStamp;
+			return;
+		},
+		ListTouchStart(e) {
+			console.log(1, e);
+			this.listTouchStartY = e.changedTouches[0].pageY;
+			this.moverOnoff = false;
+		},
+		ListTouchMove(e) {
+			console.log(2, e);
+			this.listTouchDirection = this.listTouchStartY - e.changedTouches[0].pageY > 10 ? -1 : 0;
+			this.listTouchDirection = e.changedTouches[0].pageY - this.listTouchStartY > 10 ? 1 : this.listTouchDirection;
+			const distance = this.distance + e.changedTouches[0].pageY - this.listTouchStartY;
+			if (distance > 0) return;
+			if (Math.abs(this.listTouchStartY - e.changedTouches[0].pageY) < 2) {
+				this.listTouchDirection = null;
+			}
+		},
+		ListTouchEnd(e) {
+			console.log(3, e);
+			this.handelVideo(e);
+		},
+		handelVideo(e){
+			if (this.cur_index == 0 && this.listTouchDirection == 1) {
+				console.log('刷新视频');
+				this.getVideoList(true);
+				return;
+			}
+			
+			try {
+				
+				this.translateX = 10;
+			} catch (e) {
+				console.log('错误');
+				console.log(e);
+			}
+			
+			if (this.scroll) return;
+
+			if (!this.listTouchDirection) {
+				console.log('this.clickVideo(e)');
+				this.clickVideo(e);
+				return;
+			}
+			else
+			{
+				
+			}
+			
+			//移动到最后一个加载新的列表
+			if (this.videoList.length == this.cur_index + 1) {
+				//this.getVideoList(); 
+				
+				
+				console.log('强制刷新列表，暂停当前')
+				for (let item of this.videoList) {
+					item.flag = false;
+				}
+						
+				this.getVideoList(true);//取消强制读取
+				return;
+			}
+			else
+			{
+			}
+			
+			const destination = this.listTouchDirection * this.sysheight + this.distance;
+			if (destination > 0 || destination < -this.sysheight * (this.videoList.length - 1)) return;
+			for (let item of this.videoList) {
+				item.flag = false;
+			}
+			
+			this.animate(destination, this.listTouchDirection);
+			this.cur_index = this.cur_index - this.listTouchDirection;
+			
+			this.videoList[this.cur_index].flag = true;
+			
+			//移动到最后一个加载新的列表
+			if (this.videoList.length == this.cur_index + 1) {
+				//this.getVideoList(); //取消强制读取
+			}
+			else
+			{
+			}
+			
+			this.listTouchDirection = null;
+		},
+		animate(des, direc) {
+			console.log(34534, des, direc);
+			let { distance } = this;
+			let promise = new Promise((resolve, reject) => {
+				this.scroll = true;
+				const temp = setInterval(() => {
+					if ((direc === -1 && des < distance) || (direc === 1 && des > distance)) {
+						distance += 100 * direc;
+						this.containerStyle = `transform:translateY(${distance}px)`;
+					} else {
+						clearInterval(temp);
+						distance = des;
+						this.distance = des;
+						this.containerStyle = `transform:translateY(${distance}px)`;
+						this.scroll = false;
+						resolve();
+					}
+				}, 20);
+			});
+			return promise;
+		},
+		tapMsg(e) {
+			console.log(5, e);
+		},
+		tapShare(e) {
+			console.log(6, e);
+		},
+		tapLove(e) {
+			console.log(7, e);
+		}
+	}
+};
+</script>
+
+<style lang="scss">
+.page {
+	flex: 1;
+	overflow: hidden;
+	background-color: #000;
+}
+.swiper {
+	position: relative;
+}
+.cover-view-marks {
+	position: fixed;
+	top: 0;
+	right: 0;
+	z-index: 9998;
+}
+.wrapper {
+	position: fixed;
+	top: 80rpx;
+	background-color: transparent;
+	flex-direction: row;
+	width: 100%;
+	z-index: 9999;
+}
+.video {
+	width: 100%;
+	height: 100%;
+	position: relative;
+}
+.title {
+	line-height: 80rpx;
+	color: #eee;
+	font-size: 18px;
+	margin: 0 10px;
+	
+	position: relative;
+	border-width: 0px;  
+	border-style: solid;  
+	border-color: #000; 
+		
+	box-sizing: border-box;
+}
+.title-center {
+	flex-direction: row;
+	height: 45px;
+	line-height: 30px;
+	justify-content: center;
+	align-items: center;
+	/* #ifndef APP-PLUS-NVUE */
+	display: flex;
+	/*  #endif */
+}
+.active-title {
+	border-bottom-width: 2px;
+	font-weight: bold;
+	border-style: solid;
+	border-bottom-color: #ffffff;
+	color: #ffffff;
+}
+.img {
+	width: 50rpx;
+	height: 50rpx;
+	margin-top: 18rpx;
+}
+
+</style>

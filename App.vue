@@ -4,7 +4,6 @@
 		mapMutations,
 		mapState
 	} from 'vuex'
-	import Lang from './config/lang'
 
 	export default {
 		data() {
@@ -64,14 +63,8 @@
 
 			this.__('首页');
 			this.__('分类');
-			this.__('发现');
 			this.__('购物车');
 			this.__('我的');
-
-			console.info(11)
-			await that.reloadLang();
-			console.info(21)
-			that.resetLang();
 
 			await this.$store.dispatch(`getUserInfo`, function(userInfo) {
 				//that.$isResolve()
@@ -94,45 +87,12 @@
 		onShow: function() {
 			console.log('App Show')
 			let that = this;
-
-			setTimeout(() => {
-				this.getPlantformInfo(function(plantformInfo) {
-					if (that.hasLogin && that.userInfo.im && that.plantformInfo.chat_global) {
-						that.$Socket.connectserver(that.userInfo.im);
-					}
-				});
-			}, 300);
 		},
 		onHide: function() {},
 
 		methods: {
 			...mapMutations(['logout', 'getPlantformInfo', 'forceUserInfo', 'getUserInfo', 'showCartNum', 'reloadUserResource', 'setMsgNum']),
-			reloadLang: async function(e) {
-				var that = this;
-				await that.$.request({
-					url: this.Config.URL.listTranslateLang,
-					data: {},
-					loading: false,
-					ajaxCache: {
-						timeout: that.Config.CACHE_EXPIRE
-					},
-					success: function(data, status, msg, code) {
-						data = data || {}
-						console.info(20)
-						const opt = data.opt || {};
-						that.Lang.data = opt;
-
-						const lang = data.lang || {};
-						for (var key in lang) {
-							let tmp_lang = key.replace('_', '-');
-
-							that.Lang.G[tmp_lang] = Object.assign(that.Lang.G[tmp_lang] || {}, lang[key])
-						}
-
-						that.resetLang();
-					}
-				});
-			},
+			
 			checkNewMsg: function() {
 				if (this.hasLogin) {} else {
 					return;
